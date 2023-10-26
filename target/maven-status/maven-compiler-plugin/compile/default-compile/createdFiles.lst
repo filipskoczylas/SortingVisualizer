@@ -1,0 +1,9 @@
+pl\polsl\FilipSkoczylas\Model\InsertionSorter.class
+pl\polsl\FilipSkoczylas\Model\SelectionSorter.class
+pl\polsl\FilipSkoczylas\Controller\AppController.class
+pl\polsl\FilipSkoczylas\Model\Sorter.class
+pl\polsl\FilipSkoczylas\View\ViewMenager.class
+pl\polsl\FilipSkoczylas\Controller\AppController$TargetSorting.class
+pl\polsl\FilipSkoczylas\Lab1.class
+pl\polsl\FilipSkoczylas\Model\SortingStepsLibrary.class
+pl\polsl\FilipSkoczylas\Model\QuickSorter.class
