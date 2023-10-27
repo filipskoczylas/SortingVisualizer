@@ -14,7 +14,9 @@ public class KeyInputLoader {
     public String getSortingType(){
         return getLine();
     }
-            
+    public String getArrayElement(){
+        return getLine();
+    }
     private String getLine(){
         String result;
         scanner = new Scanner(System.in);
