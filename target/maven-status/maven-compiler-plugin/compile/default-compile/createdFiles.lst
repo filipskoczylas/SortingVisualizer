@@ -7,4 +7,5 @@ pl\polsl\FilipSkoczylas\View\ViewMenager.class
 pl\polsl\FilipSkoczylas\Controller\AppController$TargetSorting.class
 pl\polsl\FilipSkoczylas\Lab1.class
 pl\polsl\FilipSkoczylas\Model\SortingStepsLibrary.class
+pl\polsl\FilipSkoczylas\Model\ArgsParser.class
 pl\polsl\FilipSkoczylas\Model\QuickSorter.class

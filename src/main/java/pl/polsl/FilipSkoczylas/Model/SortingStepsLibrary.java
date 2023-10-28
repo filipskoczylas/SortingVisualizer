@@ -22,7 +22,7 @@ public class SortingStepsLibrary {
         }
     }
     public int getAmountOfSteps(){
-        return arrayLength;
+        return sortingSteps.size();
     }
     public int[] getStep(int index){
         if(index >= 0 && index < sortingSteps.size()){

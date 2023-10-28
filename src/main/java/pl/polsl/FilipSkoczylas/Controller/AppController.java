@@ -6,6 +6,12 @@ package pl.polsl.FilipSkoczylas.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import pl.polsl.FilipSkoczylas.Model.ArgsParser;
+import pl.polsl.FilipSkoczylas.Model.InsertionSorter;
+import pl.polsl.FilipSkoczylas.Model.QuickSorter;
+import pl.polsl.FilipSkoczylas.Model.SelectionSorter;
+import pl.polsl.FilipSkoczylas.Model.Sorter;
+import pl.polsl.FilipSkoczylas.Model.SortingStepsLibrary;
 import pl.polsl.FilipSkoczylas.View.ViewMenager;
 import pl.polsl.FilipSkoczylas.View.KeyInputLoader;
 
@@ -17,16 +23,20 @@ public class AppController {
     private int[] inputArray;
     private ViewMenager viewMenager;
     private KeyInputLoader keyInputLoader;
+    private Sorter sorter;
+    private ArgsParser argsParser;
     private enum TargetSorting{
        InsertionSort, 
        QuickSort, 
        SelectionSort
     }
     private TargetSorting targetSorting;
+    
     public AppController(String[] args){
         //initialize view objects
         viewMenager = new ViewMenager();
         keyInputLoader = new KeyInputLoader();
+        argsParser = new ArgsParser();
         //no parameters given
         if(args == null || args.length == 0){
             askForInputParameters();
@@ -42,25 +52,44 @@ public class AppController {
             askForInputArray();
             return;
         }
-        parseArgsIntoArray(Arrays.copyOfRange(args, 1, args.length));
+        try{
+            inputArray = argsParser.parseArgsIntoArray(Arrays.copyOfRange(args, 1, args.length));
+        }
+        catch(NumberFormatException ex){
+            viewMenager.printText("Values different than integers in input array"
+                    + "\nPlease insert new array");
+            askForInputArray();
+        }
+        catch(IllegalArgumentException ex){
+            viewMenager.printText("Values in input array must be greater or equal 0. "
+                    + "\nPlease insert new array");
+        }
     }
     public void performSorting(){
-        viewMenager.printArray(inputArray);
+        SortingStepsLibrary steps = sorter.sortArray(inputArray);
+        viewMenager.entitleArray();
+        for (int i = 0; i < steps.getAmountOfSteps(); i++) {
+            viewMenager.printArray(steps.getStep(i));
+        }    
     }
     
     private boolean determineSortingType(String command){
         boolean result = false;
         switch(command){
             case "-is":
+                //This sorter is implemented
                 targetSorting = TargetSorting.InsertionSort;
+                sorter = new InsertionSorter();
                 result = true;
                 break;
             case "-qs":
                 targetSorting = TargetSorting.QuickSort;
+                sorter = new QuickSorter();
                 result = true;
                 break;
             case "-ss":
                 targetSorting = TargetSorting.SelectionSort;
+                sorter = new SelectionSorter();
                 result = true;
                 break;
             default:
@@ -68,34 +97,7 @@ public class AppController {
         }
         return result;
     }
-    private void parseArgsIntoArray(String[] args){
-        inputArray = new int[args.length];
-        for (int i = 1; i < args.length; i++) {
-            try{
-                int value = Integer.parseInt(args[i]);
-                inputArray[i] = value;
-            }
-            catch (NumberFormatException ex){
-                viewMenager.printText("\"" + args[i] + 
-                        "\" is not a number, 0 put into array instead. ");               
-            }
-        }
-    }
-    private int parseStringToInt(String input){
-        int result = -1;
-        try{
-            result = Integer.parseInt(input);
-            if(result < 0){
-                viewMenager.printText("Number has to be equal or larger than 0");
-                result = -1;
-            }
-        }
-        catch (NumberFormatException ex){
-            viewMenager.printText("\"" + input + 
-                        "\" is not a number"); 
-        }
-        return result;
-    }
+
     private void askForInputParameters(){
         viewMenager.printText("No input arguments. ");
         askForSortingType();
@@ -122,7 +124,18 @@ public class AppController {
                 }  
             }
             else{
-                int integerInput = parseStringToInt(input);
+                int integerInput = -1;
+                //Try parsing input
+                try{
+                integerInput = argsParser.parseStringToInt(input);
+                }
+                catch(NumberFormatException ex){
+                    viewMenager.printText("Error! Value must be an integer greater or equal 0");
+                }
+                catch(IllegalArgumentException ex){
+                    viewMenager.printText("Error! Value must be greater or equal 0");
+                }
+                
                 if(integerInput >= 0){
                     inputArrayList.add(integerInput);
                 }

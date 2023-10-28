@@ -2,6 +2,7 @@ D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Lab1.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Controller\AppController.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\KeyInputLoader.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\ViewMenager.java
+D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\ArgsParser.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\InsertionSorter.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\SelectionSorter.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\QuickSorter.java
