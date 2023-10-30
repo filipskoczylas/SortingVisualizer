@@ -16,8 +16,10 @@ import pl.polsl.FilipSkoczylas.View.ViewMenager;
 import pl.polsl.FilipSkoczylas.View.KeyInputLoader;
 
 /**
- *
- * @author SuperStudent-PL
+ * Controller class, menages data, and sends orders to view and model classes. 
+ * @author Filip Skoczylas
+ * @version %I%, %G%
+ * @since p1
  */
 public class AppController {
     private int[] inputArray;
@@ -32,29 +34,37 @@ public class AppController {
     }
     private TargetSorting targetSorting;
     
+    /**
+     * Controller constructor. 
+     * @param args Controller initialization args args
+     * ("-qs" - quick sort, "-is" - insertion sort "-ss" - selection sort)
+     * next params are integer representation of array, that will be sorted
+     * @since p1
+     */
     public AppController(String[] args){
-        //initialize view objects
+        //Initialize view objects
         viewMenager = new ViewMenager();
         keyInputLoader = new KeyInputLoader();
         argsParser = new ArgsParser();
-        //no parameters given
+        //no parameters given, ask for parameters
         if(args == null || args.length == 0){
             askForInputParameters();
             return;
         }
-        //return if no sorting type is determined, or wrong sorting type is given
+        //Wrong sorting type given, ask for sorting type
         if(determineSortingType(args[0]) == false){
-            //viewMenager.printText("\"" + args[0] + "\" is not valid sorting type, view documentation to get more information. ");
             askForSortingType();
         }
+        //Integer array too short, ask for integer array
         if(args.length < 3){
-            //viewMenager.printText("Array have to consist of at least 2 integer numbers");
             askForInputArray();
             return;
         }
+        //try parsing integer array        
         try{
             inputArray = argsParser.parseArgsIntoArray(Arrays.copyOfRange(args, 1, args.length));
         }
+        //Inform user about wrong data, and ask for integer array if neccesary
         catch(NumberFormatException ex){
             viewMenager.printText("Values different than integers in input array"
                     + "\nPlease insert new array");
@@ -65,16 +75,28 @@ public class AppController {
                     + "\nPlease insert new array");
         }
     }
+    /**
+     * Method prepares sorting steps of given sorting type, and prints them to terminal
+     * @since p1
+     */
     public void performSorting(){
+        //prepare sorting steps
         SortingStepsLibrary steps = sorter.sortArray(inputArray);
         viewMenager.entitleArray();
+        //print sorting steps
+        //in future steps should be displayed in GUI
         for (int i = 0; i < steps.getAmountOfSteps(); i++) {
             viewMenager.printArray(steps.getStep(i));
         }    
     }
-    
+    /**
+     * Method validates weather given parameter is valid sorting type, and initializes sorter interface
+     * @param command parameter, determining sorting type
+     * @return true if command is valid, else false
+     */
     private boolean determineSortingType(String command){
         boolean result = false;
+        //Function structure makes it easy to implement new sorting types
         switch(command){
             case "-is":
                 //This sorter is implemented
@@ -98,21 +120,43 @@ public class AppController {
         return result;
     }
 
+    /**
+     * Method asks user for input parameters, that should be put as command line arguments. 
+     */
     private void askForInputParameters(){
         viewMenager.printText("No input arguments. ");
         askForSortingType();
         askForInputArray();
     }
+    /**
+     * Method asks user for sorting type. 
+     */
     private void askForSortingType(){
         do{
             viewMenager.printText("Please type sorting type (-is, -qs, -ss)");
         }while (determineSortingType(keyInputLoader.getSortingType()) == false);        
     }
+    /**
+     * Method asks user for input integer array, that will be sorted. 
+     */
     private void askForInputArray(){
         viewMenager.printText("Please type numbers, which you want to include in array. "
                 + "\nNumbers have to be 0 or larger. "
                 + "\nType \"end\" to end inputing array");
         ArrayList<Integer> inputArrayList = new ArrayList<Integer>();
+        askForArrayElements(inputArrayList);
+        
+        //Convert array list into array
+        inputArray = new int[inputArrayList.size()];
+        for (int i = 0; i < inputArrayList.size(); i++) {
+            inputArray[i] = inputArrayList.get(i);
+        }
+    }
+    /**
+     * Method asks user for input integer array and puts user input into input integer array. 
+     * @param inputArrayList array list, in which integers will be put
+     */
+    private void askForArrayElements(ArrayList<Integer> inputArrayList){
         while(true){
             String input = keyInputLoader.getArrayElement();
             if (input.equals("end")){
@@ -140,10 +184,6 @@ public class AppController {
                     inputArrayList.add(integerInput);
                 }
             }
-        }
-        inputArray = new int[inputArrayList.size()];
-        for (int i = 0; i < inputArrayList.size(); i++) {
-            inputArray[i] = inputArrayList.get(i);
         }
     }
 }

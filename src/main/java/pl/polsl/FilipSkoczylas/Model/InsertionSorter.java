@@ -7,10 +7,17 @@ package pl.polsl.FilipSkoczylas.Model;
 import java.util.Arrays;
 
 /**
- *
- * @author SuperStudent-PL
+ * Class impements sorter interface. 
+ * Used to perform insertion sorting. 
+ * @author Filip Skoczylas
+ * @since p1
  */
 public class InsertionSorter implements Sorter {
+    /**
+     * Method that sorts given array, and saves sorting steps into library. 
+     * @param array integer array that will be sorted
+     * @return library containing sorting steps
+     */
     @Override
     public SortingStepsLibrary sortArray(int[] array){
         SortingStepsLibrary library = new SortingStepsLibrary(array.length);

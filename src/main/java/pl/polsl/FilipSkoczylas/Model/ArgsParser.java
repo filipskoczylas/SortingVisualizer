@@ -5,11 +5,22 @@
 package pl.polsl.FilipSkoczylas.Model;
 
 /**
- *
- * @author Filip
+ * Class used to parse arguments from sting to other types. 
+ * @author Filip Skoczylas
+ * @since f1
  */
 public class ArgsParser {
+    /**
+     * Class base constructor. 
+     */
     public ArgsParser(){}
+    /**
+     * Method used to convert string representations of integers, into integer array. 
+     * @param args string array, that should be filled with integers
+     * @return integer array
+     * @throws IllegalArgumentException when integers are smaller than 0
+     * @throws NumberFormatException when arguments are not integers
+     */
     public int[] parseArgsIntoArray(String[] args)
             throws IllegalArgumentException, NumberFormatException{
         int[] inputArray = new int[args.length];
@@ -28,6 +39,13 @@ public class ArgsParser {
         }
         return inputArray;
     }
+    /**
+     * Method used to convert string into integer
+     * @param input string, that will be converted
+     * @return integer representation of string
+     * @throws IllegalArgumentException when integer is smaller than 0
+     * @throws NumberFormatException when string is not an integer
+     */
     public int parseStringToInt(String input)
             throws IllegalArgumentException, NumberFormatException{
         int result = -1;

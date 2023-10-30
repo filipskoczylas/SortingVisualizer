@@ -5,21 +5,38 @@
 package pl.polsl.FilipSkoczylas.View;
 import java.util.Scanner;
 /**
- *
+ * Class used to scan for user input. 
  * @author Filip
+ * @since f1
  */
 public class KeyInputLoader {
     Scanner scanner;
-    public KeyInputLoader(){}
+    /**
+     * Class constructor. Innitializes scanner. 
+     */
+    public KeyInputLoader(){
+        scanner = new Scanner(System.in);
+    }
+    /**
+     * Wrapper method for getLine(), used to get sorting type. 
+     * @return sorting type parameter
+     */
     public String getSortingType(){
         return getLine();
     }
+    /**
+     * Wrapper method for getLine(), used to get array element. 
+     * @return array element as String
+     */
     public String getArrayElement(){
         return getLine();
     }
+    /**
+     * Method used to get user input. 
+     * @return user input as String
+     */
     private String getLine(){
         String result;
-        scanner = new Scanner(System.in);
         result = scanner.nextLine();
         return result;
     }

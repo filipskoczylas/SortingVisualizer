@@ -5,9 +5,15 @@
 package pl.polsl.FilipSkoczylas.Model;
 
 /**
- *
- * @author SuperStudent-PL
+ * Interface for sorters, that will be used to srot arrays. 
+ * @author Filip Skoczylas
+ * @since p1
  */
 public interface Sorter {
+    /**
+     * Method that sorts given array, and saves sorting steps into library. 
+     * @param array integer array that will be sorted
+     * @return library containing sorting steps
+     */
     public SortingStepsLibrary sortArray(int[] array);
 }
