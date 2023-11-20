@@ -8,10 +8,10 @@ import pl.polsl.FilipSkoczylas.Controller.AppController;
 /**
  * Class containg main method. 
  * @author Filip Skoczylas
- * @version %I%, %G%
+ * @version f1
  * @since p1
  */
-public class Lab1 {
+public class SortingAlgorithmsVisualizer {
 /**
  * Program main method. 
  * @param args first param is sorting type

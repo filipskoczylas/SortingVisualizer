@@ -4,6 +4,8 @@
  */
 package pl.polsl.FilipSkoczylas.Model;
 
+import java.util.ArrayList;
+
 /**
  * Interface for sorters, that will be used to srot arrays. 
  * @author Filip Skoczylas
@@ -15,5 +17,5 @@ public interface Sorter {
      * @param array integer array that will be sorted
      * @return library containing sorting steps
      */
-    public SortingStepsLibrary sortArray(int[] array);
+    public SortingStepsLibrary sortArray(ArrayList<Integer> array);
 }

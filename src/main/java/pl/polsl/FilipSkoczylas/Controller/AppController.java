@@ -6,7 +6,6 @@ package pl.polsl.FilipSkoczylas.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import pl.polsl.FilipSkoczylas.Model.ArgsParser;
 import pl.polsl.FilipSkoczylas.Model.InsertionSorter;
 import pl.polsl.FilipSkoczylas.Model.QuickSorter;
 import pl.polsl.FilipSkoczylas.Model.SelectionSorter;
@@ -18,11 +17,11 @@ import pl.polsl.FilipSkoczylas.View.KeyInputLoader;
 /**
  * Controller class, menages data, and sends orders to view and model classes. 
  * @author Filip Skoczylas
- * @version %I%, %G%
+ * @version f1
  * @since p1
  */
 public class AppController {
-    private int[] inputArray;
+    private ArrayList<Integer> inputArray;
     private ViewMenager viewMenager;
     private KeyInputLoader keyInputLoader;
     private Sorter sorter;
@@ -143,14 +142,9 @@ public class AppController {
         viewMenager.printText("Please type numbers, which you want to include in array. "
                 + "\nNumbers have to be 0 or larger. "
                 + "\nType \"end\" to end inputing array");
-        ArrayList<Integer> inputArrayList = new ArrayList<Integer>();
-        askForArrayElements(inputArrayList);
+        inputArray = new ArrayList<Integer>();
+        askForArrayElements(inputArray);
         
-        //Convert array list into array
-        inputArray = new int[inputArrayList.size()];
-        for (int i = 0; i < inputArrayList.size(); i++) {
-            inputArray[i] = inputArrayList.get(i);
-        }
     }
     /**
      * Method asks user for input integer array and puts user input into input integer array. 

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"pl.polsl.FilipSkoczylas"},{"l":"pl.polsl.FilipSkoczylas.Controller"},{"l":"pl.polsl.FilipSkoczylas.Model"},{"l":"pl.polsl.FilipSkoczylas.View"}];updateSearchResults();

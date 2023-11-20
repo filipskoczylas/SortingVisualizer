@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pl.polsl.FilipSkoczylas.Model;
+package pl.polsl.FilipSkoczylas.Controller;
+
+import java.util.ArrayList;
 
 /**
  * Class used to parse arguments from sting to other types. 
@@ -21,19 +23,18 @@ public class ArgsParser {
      * @throws IllegalArgumentException when integers are smaller than 0
      * @throws NumberFormatException when arguments are not integers
      */
-    public int[] parseArgsIntoArray(String[] args)
+    public ArrayList<Integer> parseArgsIntoArray(String[] args)
             throws IllegalArgumentException, NumberFormatException{
-        int[] inputArray = new int[args.length];
-        for (int i = 0; i < args.length; i++) {
-            try{
-                int value = Integer.parseInt(args[i]);
+        ArrayList<Integer> inputArray = new ArrayList<>();
+        for (String arg : args) {
+            try {
+                int value = Integer.parseInt(arg);
                 //Values have to be greater than 0
                 if(value < 0){
                     throw new IllegalArgumentException();
                 }
-                inputArray[i] = value;
-            }
-            catch (NumberFormatException ex){
+                inputArray.add(value);
+            }catch (NumberFormatException ex){
                 throw ex;
             }
         }

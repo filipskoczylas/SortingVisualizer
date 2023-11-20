@@ -4,6 +4,8 @@
  */
 package pl.polsl.FilipSkoczylas.View;
 
+import java.util.ArrayList;
+
 /**
  * Class used to display data in console. 
  * @author Filip Skoczylas
@@ -27,13 +29,13 @@ public class ViewMenager {
      * Method used to print array. 
      * @param array array that will be printed
      */
-    public void printArray(int[] array){
-        for (int i = 0; i < array.length; i++){
-            if(i != (array.length - 1)){
-                System.out.print(array[i]+", ");
+    public void printArray(ArrayList<Integer> array){
+        for (int i = 0; i < array.size(); i++){
+            if(i != (array.size()- 1)){
+                System.out.print(array.get(i)+", ");
             }
             else{
-                System.out.print(array[i]);
+                System.out.print(array.get(i));
             }
         }
         System.out.println("");

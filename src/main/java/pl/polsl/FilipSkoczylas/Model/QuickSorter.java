@@ -4,6 +4,7 @@
  */
 package pl.polsl.FilipSkoczylas.Model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -21,14 +22,14 @@ public class QuickSorter implements Sorter{
      * @return library containing sorting steps
      */
     @Override
-    public SortingStepsLibrary sortArray(int[] array){
-        library = new SortingStepsLibrary(array.length);
-        library.addStep(Arrays.copyOf(array, array.length));
-        quickSort(array, 0, array.length - 1);
+    public SortingStepsLibrary sortArray(ArrayList<Integer> array){
+        library = new SortingStepsLibrary(array.size());
+        library.addStep((ArrayList<Integer>)array.clone());
+        quickSort(array, 0, array.size() - 1);
         return library;
     }
     
-    private void quickSort(int array[], int begin, int end) {
+    private void quickSort(ArrayList<Integer> array, int begin, int end) {
     if (begin < end) {
         int partitionIndex = generatePartitionIndex(array, begin, end);
 
@@ -37,30 +38,30 @@ public class QuickSorter implements Sorter{
     }
 }
 
-    private int generatePartitionIndex(int array[], int begin, int end) {
-        int pivot = array[end];
+    private int generatePartitionIndex(ArrayList<Integer> array, int begin, int end) {
+        int pivot = array.get(end);
         int i = (begin - 1);
 
         for (int j = begin; j < end; j++) {
-            if (array[j] <= pivot) {
+            if (array.get(j) <= pivot) {
                 i++;
 
-                int swapTemp = array[i];
-                array[i] = array[j];
-                array[j] = swapTemp;
+                int swapTemp = array.get(i);
+                array.set(i, array.get(j));
+                array.set(j, swapTemp);
                 //if values where cahnged, add step
                 if(i!=j){
-                    library.addStep(Arrays.copyOf(array, array.length));
+                    library.addStep((ArrayList)array.clone());
                 }
             }
         }
 
-        int swapTemp = array[i+1];
-        array[i+1] = array[end];
-        array[end] = swapTemp;
+        int swapTemp = array.get(i+1);
+        array.set(i+1,  array.get(end));
+        array.set(end, swapTemp);
         //if values where cahnged, add step
         if((i+1) != end){
-            library.addStep(Arrays.copyOf(array, array.length));
+            library.addStep((ArrayList)array.clone());
         }
         return i+1;
     }

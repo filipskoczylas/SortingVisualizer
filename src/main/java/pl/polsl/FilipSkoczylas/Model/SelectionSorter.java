@@ -4,7 +4,7 @@
  */
 package pl.polsl.FilipSkoczylas.Model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * Class impements sorter interface. 
@@ -19,23 +19,23 @@ public class SelectionSorter implements Sorter {
      * @return library containing sorting steps
      */
     @Override
-    public SortingStepsLibrary sortArray(int[] array){
-        SortingStepsLibrary library = new SortingStepsLibrary(array.length);
-        library.addStep(Arrays.copyOf(array, array.length));
-        for (int i = 0; i < array.length; i++) {
+    public SortingStepsLibrary sortArray(ArrayList<Integer> array){
+        SortingStepsLibrary library = new SortingStepsLibrary(array.size());
+        library.addStep((ArrayList)array.clone());
+        for (int i = 0; i < array.size(); i++) {
             int minIdx = i;
-            for(int j = i + 1; j < array.length; j++){
-                if(array[j] < array[minIdx]){
+            for(int j = i + 1; j < array.size(); j++){
+                if(array.get(j) < array.get(minIdx)){
                     minIdx = j;
                 }
             }
             //Swap values if array[i] isn't minimal value
             if(minIdx != i){
-                int swapTemp = array[minIdx];
-                array[minIdx] = array[i];
-                array[i] = swapTemp;
+                int swapTemp = array.get(minIdx);
+                array.set(minIdx, array.get(i));
+                array.set(i, swapTemp);
             }
-            library.addStep(Arrays.copyOf(array, array.length));
+            library.addStep((ArrayList)array.clone());
         }
         return library;
     }

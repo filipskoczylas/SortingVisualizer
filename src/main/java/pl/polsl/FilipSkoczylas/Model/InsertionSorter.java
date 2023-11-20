@@ -4,7 +4,7 @@
  */
 package pl.polsl.FilipSkoczylas.Model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * Class impements sorter interface. 
@@ -19,16 +19,16 @@ public class InsertionSorter implements Sorter {
      * @return library containing sorting steps
      */
     @Override
-    public SortingStepsLibrary sortArray(int[] array){
-        SortingStepsLibrary library = new SortingStepsLibrary(array.length);
-        library.addStep(Arrays.copyOf(array, array.length));
-        for (int i = 1; i < array.length; i++) {
-            int key = array[i];
+    public SortingStepsLibrary sortArray(ArrayList<Integer> array){
+        SortingStepsLibrary library = new SortingStepsLibrary(array.size());
+        library.addStep((ArrayList)array.clone());
+        for (int i = 1; i < array.size(); i++) {
+            int key = array.get(i);
             for(int j = i - 1; j >=0; j--){
-                if(array[j] > key){
-                    array[j+1] = array[j];
-                    array[j] = key;
-                    library.addStep(Arrays.copyOf(array, array.length));
+                if(array.get(j) > key){
+                    array.set(j+1, array.get(j));
+                    array.set(j, key);
+                    library.addStep((ArrayList)array.clone());
                 }
                 else{
                     break;

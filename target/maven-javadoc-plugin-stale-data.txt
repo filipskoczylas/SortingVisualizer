@@ -1,0 +1,46 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'D:/Studia/Java/SortingVisualizer/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/Studia/Java/SortingVisualizer/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SortingAlgorithmsVisualizer 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'SortingAlgorithmsVisualizer 1.0-SNAPSHOT API'
+pl.polsl.FilipSkoczylas.Controller
+pl.polsl.FilipSkoczylas.Model
+pl.polsl.FilipSkoczylas
+pl.polsl.FilipSkoczylas.View
+D:\Studia\Java\SortingVisualizer\src\main\java = 1698346857520
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\allclasses-index.html = 1699995008172
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\allpackages-index.html = 1699995008177
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\element-list = 1699995007842
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\help-doc.html = 1699995008258
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\index-all.html = 1699995008241
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\index.html = 1699995008121
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\jquery-ui.overrides.css = 1699995008289
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\member-search-index.js = 1699995008189
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\module-search-index.js = 1699995008180
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\overview-summary.html = 1699995008244
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\overview-tree.html = 1699995008109
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\package-search-index.js = 1699995008186
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\script.js = 1699995008266
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\search.js = 1699995008273
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\stylesheet.css = 1699995008262
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\tag-search-index.js = 1699995008191
+D:\Studia\Java\SortingVisualizer\target\site\apidocs\type-search-index.js = 1699995008188

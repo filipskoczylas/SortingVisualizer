@@ -11,22 +11,22 @@ import java.util.ArrayList;
  * @since p1
  */
 public class SortingStepsLibrary {
-    private ArrayList<int[]> sortingSteps;
+    private ArrayList<ArrayList<Integer>> sortingSteps;
     private int arrayLength;
     /**
      * Class constructor. 
      * @param arrayLength length of sorted array. 
      */
-    public SortingStepsLibrary(int arrayLength){
-        sortingSteps= new ArrayList<int[]>();
+    public SortingStepsLibrary(Integer arrayLength){
+        sortingSteps= new ArrayList<ArrayList<Integer>>();
         this.arrayLength = arrayLength;
     }
     /**
      * Method used to add sorting step. 
      * @param array array, that represents sorting step
      */
-    public void addStep(int[] array){
-        if(array.length == arrayLength){
+    public void addStep(ArrayList array){
+        if(array.size() == arrayLength){
         sortingSteps.add(array);
         }
     }
@@ -42,8 +42,8 @@ public class SortingStepsLibrary {
      * @param index index of step
      * @return array representing sorting step
      */
-    public int[] getStep(int index){
-        int[] result = null;
+    public ArrayList<Integer> getStep(int index){
+        ArrayList<Integer> result = null;
         if(index >= 0 && index < sortingSteps.size()){
         result = sortingSteps.get(index);
         }
