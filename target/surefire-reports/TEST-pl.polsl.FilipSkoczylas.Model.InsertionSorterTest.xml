@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.143" tests="21" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="pl.polsl.FilipSkoczylas.Model.InsertionSorterTest" time="0.101" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,9 +15,9 @@
     <property name="user.country" value="PL"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="D:\Program Files\Java\bin"/>
-    <property name="sun.java.command" value="C:\Users\Filip\AppData\Local\Temp\surefire6422225177829959268\surefirebooter-20231120163610346_3.jar C:\Users\Filip\AppData\Local\Temp\surefire6422225177829959268 2023-11-20T16-36-10_179-jvmRun1 surefire-20231120163610346_1tmp surefire_0-20231120163610346_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Filip\AppData\Local\Temp\surefire4082371594634144950\surefirebooter-20231120164357629_3.jar C:\Users\Filip\AppData\Local\Temp\surefire4082371594634144950 2023-11-20T16-43-57_447-jvmRun1 surefire-20231120164357629_1tmp surefire_0-20231120164357629_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest"/>
+    <property name="test" value="pl.polsl.FilipSkoczylas.Model.InsertionSorterTest"/>
     <property name="surefire.test.class.path" value="D:\Studia\Java\SortingVisualizer\target\test-classes;D:\Studia\Java\SortingVisualizer\target\classes;C:\Users\Filip\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\Filip\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Filip\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Filip\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\Filip\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\Filip\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\Filip\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Filip"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Filip\AppData\Local\Temp\surefire6422225177829959268\surefirebooter-20231120163610346_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Filip\AppData\Local\Temp\surefire4082371594634144950\surefirebooter-20231120164357629_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.9+11-LTS-201"/>
@@ -58,25 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testAddStep(ArrayList)[1]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.047"/>
-  <testcase name="testAddStep(ArrayList)[2]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0"/>
-  <testcase name="testAddStep(ArrayList)[3]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testAddStep(ArrayList)[4]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testIncorrectInputValues(ArrayList)[1]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0"/>
-  <testcase name="testIncorrectInputValues(ArrayList)[2]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testIncorrectInputValues(ArrayList)[3]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testIncorrectInputValues(ArrayList)[4]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testIncorrectOutputValues(ArrayList)[1]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testIncorrectOutputValues(ArrayList)[2]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0"/>
-  <testcase name="testIncorrectOutputValues(ArrayList)[3]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testIncorrectOutputValues(ArrayList)[4]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetStep(ArrayList)[1]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetStep(ArrayList)[2]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetStep(ArrayList)[3]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0"/>
-  <testcase name="testGetStep(ArrayList)[4]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetAmountOfSteps(int)[1]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.002"/>
-  <testcase name="testGetAmountOfSteps(int)[2]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetAmountOfSteps(int)[3]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetAmountOfSteps(int)[4]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
-  <testcase name="testGetAmountOfSteps(int)[5]" classname="pl.polsl.FilipSkoczylas.Model.SortingStepsLibraryTest" time="0.001"/>
+  <testcase name="testSorting(ArrayList)[1]" classname="pl.polsl.FilipSkoczylas.Model.InsertionSorterTest" time="0.048"/>
+  <testcase name="testSorting(ArrayList)[2]" classname="pl.polsl.FilipSkoczylas.Model.InsertionSorterTest" time="0.001"/>
+  <testcase name="testSorting(ArrayList)[3]" classname="pl.polsl.FilipSkoczylas.Model.InsertionSorterTest" time="0.001"/>
+  <testcase name="testSorting(ArrayList)[4]" classname="pl.polsl.FilipSkoczylas.Model.InsertionSorterTest" time="0.001"/>
 </testsuite>
