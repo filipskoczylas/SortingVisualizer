@@ -26,6 +26,7 @@ public class ArgsParser {
     public ArrayList<Integer> parseArgsIntoArray(String[] args)
             throws IllegalArgumentException, NumberFormatException{
         ArrayList<Integer> inputArray = new ArrayList<>();
+        // foreach loop - university requirement
         for (String arg : args) {
             try {
                 int value = Integer.parseInt(arg);
@@ -33,7 +34,9 @@ public class ArgsParser {
                 if(value < 0){
                     throw new IllegalArgumentException();
                 }
-                inputArray.add(value);
+                //New Integer is used, because array printing is performed by stream
+                //It is impossible not to print ", " at the end of array without using this  method
+                inputArray.add(new Integer(value));
             }catch (NumberFormatException ex){
                 throw ex;
             }
@@ -47,11 +50,13 @@ public class ArgsParser {
      * @throws IllegalArgumentException when integer is smaller than 0
      * @throws NumberFormatException when string is not an integer
      */
-    public int parseStringToInt(String input)
+    public Integer parseStringToInt(String input)
             throws IllegalArgumentException, NumberFormatException{
-        int result = -1;
+        //New Integer is used, because array printing is performed by stream
+        //It is impossible not to print ", " at the end of array without using this  method
+        Integer result = new Integer (-1);
         try{
-            result = Integer.parseInt(input);
+            result = new Integer(Integer.parseInt(input));
             if(result < 0){
                throw new IllegalArgumentException();
             }

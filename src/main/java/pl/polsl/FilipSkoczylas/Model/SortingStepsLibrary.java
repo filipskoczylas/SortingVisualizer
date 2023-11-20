@@ -45,7 +45,7 @@ public class SortingStepsLibrary {
     public ArrayList<Integer> getStep(int index){
         ArrayList<Integer> result = null;
         if(index >= 0 && index < sortingSteps.size()){
-        result = sortingSteps.get(index);
+            result = sortingSteps.get(index);
         }
         return result;
     }

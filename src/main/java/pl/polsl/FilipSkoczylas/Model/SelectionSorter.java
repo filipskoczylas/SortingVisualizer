@@ -25,15 +25,17 @@ public class SelectionSorter implements Sorter {
         for (int i = 0; i < array.size(); i++) {
             int minIdx = i;
             for(int j = i + 1; j < array.size(); j++){
-                if(array.get(j) < array.get(minIdx)){
+                if(array.get(j).intValue() < array.get(minIdx).intValue()){
                     minIdx = j;
                 }
             }
             //Swap values if array[i] isn't minimal value
             if(minIdx != i){
                 int swapTemp = array.get(minIdx);
-                array.set(minIdx, array.get(i));
-                array.set(i, swapTemp);
+                //New Integer is used, because array printing is performed by stream
+                //It is impossible not to print ", " at the end of array without using this  method
+                array.set(minIdx, new Integer(array.get(i)));
+                array.set(i, new Integer(swapTemp));
             }
             library.addStep((ArrayList)array.clone());
         }

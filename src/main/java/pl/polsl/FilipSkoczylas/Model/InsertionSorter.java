@@ -25,9 +25,11 @@ public class InsertionSorter implements Sorter {
         for (int i = 1; i < array.size(); i++) {
             int key = array.get(i);
             for(int j = i - 1; j >=0; j--){
-                if(array.get(j) > key){
-                    array.set(j+1, array.get(j));
-                    array.set(j, key);
+                if(array.get(j).intValue() > key){
+                    //New Integer is used, because array printing is performed by stream
+                    //It is impossible not to print ", " at the end of array without using this  method
+                    array.set(j+1, new Integer(array.get(j)));
+                    array.set(j, new Integer(key));
                     library.addStep((ArrayList)array.clone());
                 }
                 else{

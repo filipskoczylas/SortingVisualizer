@@ -5,6 +5,7 @@
 package pl.polsl.FilipSkoczylas.View;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 /**
  * Class used to display data in console. 
@@ -30,14 +31,8 @@ public class ViewMenager {
      * @param array array that will be printed
      */
     public void printArray(ArrayList<Integer> array){
-        for (int i = 0; i < array.size(); i++){
-            if(i != (array.size()- 1)){
-                System.out.print(array.get(i)+", ");
-            }
-            else{
-                System.out.print(array.get(i));
-            }
-        }
+        //Stream and lambda used - university requirement
+        array.stream().forEach(p -> System.out.print(p + ((p == array.stream().reduce((first, second) -> second).get()) ? "" : ", ")));
         System.out.println("");
     }
     

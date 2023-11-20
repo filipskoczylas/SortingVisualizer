@@ -43,12 +43,14 @@ public class QuickSorter implements Sorter{
         int i = (begin - 1);
 
         for (int j = begin; j < end; j++) {
-            if (array.get(j) <= pivot) {
+            if (array.get(j).intValue() <= pivot) {
                 i++;
 
                 int swapTemp = array.get(i);
-                array.set(i, array.get(j));
-                array.set(j, swapTemp);
+                //New Integer is used, because array printing is performed by stream
+                //It is impossible not to print ", " at the end of array without using this  method
+                array.set(i, new Integer(array.get(j)));
+                array.set(j, new Integer(swapTemp));
                 //if values where cahnged, add step
                 if(i!=j){
                     library.addStep((ArrayList)array.clone());
@@ -57,8 +59,10 @@ public class QuickSorter implements Sorter{
         }
 
         int swapTemp = array.get(i+1);
-        array.set(i+1,  array.get(end));
-        array.set(end, swapTemp);
+        //New Integer is used, because array printing is performed by stream
+        //It is impossible not to print ", " at the end of array without using this  method
+        array.set(i+1,  new Integer(array.get(end)));
+        array.set(end,new Integer(swapTemp));
         //if values where cahnged, add step
         if((i+1) != end){
             library.addStep((ArrayList)array.clone());
