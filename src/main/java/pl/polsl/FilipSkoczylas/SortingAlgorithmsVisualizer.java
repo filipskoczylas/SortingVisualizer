@@ -21,6 +21,5 @@ public class SortingAlgorithmsVisualizer {
  */
     public static void main(String[] args) {
         AppController appController = new AppController(args);
-        appController.performSorting();
     }
 }

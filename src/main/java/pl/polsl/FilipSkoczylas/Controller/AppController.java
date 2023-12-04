@@ -4,8 +4,12 @@
  */
 package pl.polsl.FilipSkoczylas.Controller;
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
+import javax.swing.JFrame;
 import pl.polsl.FilipSkoczylas.Model.InsertionSorter;
 import pl.polsl.FilipSkoczylas.Model.QuickSorter;
 import pl.polsl.FilipSkoczylas.Model.SelectionSorter;
@@ -13,6 +17,8 @@ import pl.polsl.FilipSkoczylas.Model.Sorter;
 import pl.polsl.FilipSkoczylas.Model.SortingStepsLibrary;
 import pl.polsl.FilipSkoczylas.View.ViewMenager;
 import pl.polsl.FilipSkoczylas.View.KeyInputLoader;
+import pl.polsl.FilipSkoczylas.View.MainPanel;
+import pl.polsl.FilipSkoczylas.View.TablePanel;
 
 /**
  * Controller class, menages data, and sends orders to view and model classes. 
@@ -26,6 +32,8 @@ public class AppController {
     private KeyInputLoader keyInputLoader;
     private Sorter sorter;
     private ArgsParser argsParser;
+    private MainPanel mainPanel;
+    private TablePanel tablePanel;
     private enum TargetSorting{
        InsertionSort, 
        QuickSort, 
@@ -45,6 +53,7 @@ public class AppController {
         viewMenager = new ViewMenager();
         keyInputLoader = new KeyInputLoader();
         argsParser = new ArgsParser();
+        
         //no parameters given, ask for parameters
         if(args == null || args.length == 0){
             askForInputParameters();
@@ -73,6 +82,20 @@ public class AppController {
             viewMenager.printText("Values in input array must be greater or equal 0. "
                     + "\nPlease insert new array");
         }
+        tablePanel = new TablePanel(this);
+                javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowTableGUI();
+            }
+        });
+        //invoke GUI
+        mainPanel = new MainPanel(inputArray.size(), inputArray.stream().mapToInt(v->v).max().orElseThrow(NoSuchElementException::new));
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowMainGUI();
+            }
+        });
+        performSorting();
     }
     /**
      * Method prepares sorting steps of given sorting type, and prints them to terminal
@@ -81,13 +104,53 @@ public class AppController {
     public void performSorting(){
         //prepare sorting steps
         SortingStepsLibrary steps = sorter.sortArray(inputArray);
-        viewMenager.entitleArray();
+       // viewMenager.entitleArray();
         //print sorting steps
         //in future steps should be displayed in GUI
         for (int i = 0; i < steps.getAmountOfSteps(); i++) {
-            viewMenager.printArray(steps.getStep(i));
+            //viewMenager.printArray(steps.getStep(i));
+            mainPanel.setArray(steps.getStep(i));
+            try{
+                Thread.sleep(400);
+            }
+            catch (InterruptedException e){}
         }    
     }
+    
+    private void createAndShowMainGUI() {        
+        //ustawienie ladnego wygladu okien
+        JFrame.setDefaultLookAndFeelDecorated(true);
+
+	//utworzenie i przygotowanie okna
+        JFrame frame = new JFrame("SortingAlgorithmsVisualiser");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //panel widoczny
+        mainPanel.setOpaque(true); 
+        frame.setContentPane(mainPanel);
+
+        //wyswietlenie okna
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    private void createAndShowTableGUI() {        
+        //ustawienie ladnego wygladu okien
+        JFrame.setDefaultLookAndFeelDecorated(true);
+
+	//utworzenie i przygotowanie okna
+        JFrame frame = new JFrame("SortingAlgorithmsVisualiser");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //panel widoczny
+        tablePanel.setOpaque(true); 
+        frame.setContentPane(tablePanel);
+
+        //wyswietlenie okna
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
     /**
      * Method validates weather given parameter is valid sorting type, and initializes sorter interface
      * @param command parameter, determining sorting type
