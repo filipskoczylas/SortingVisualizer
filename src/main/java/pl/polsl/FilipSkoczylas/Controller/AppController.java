@@ -4,12 +4,14 @@
  */
 package pl.polsl.FilipSkoczylas.Controller;
 
-import java.awt.BorderLayout;
-import java.awt.Graphics;
+
+import java.awt.event.WindowEvent;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import pl.polsl.FilipSkoczylas.Model.InsertionSorter;
 import pl.polsl.FilipSkoczylas.Model.QuickSorter;
 import pl.polsl.FilipSkoczylas.Model.SelectionSorter;
@@ -18,6 +20,7 @@ import pl.polsl.FilipSkoczylas.Model.SortingStepsLibrary;
 import pl.polsl.FilipSkoczylas.View.ViewMenager;
 import pl.polsl.FilipSkoczylas.View.KeyInputLoader;
 import pl.polsl.FilipSkoczylas.View.MainPanel;
+import pl.polsl.FilipSkoczylas.View.MessageBox;
 import pl.polsl.FilipSkoczylas.View.TablePanel;
 
 /**
@@ -34,12 +37,11 @@ public class AppController {
     private ArgsParser argsParser;
     private MainPanel mainPanel;
     private TablePanel tablePanel;
-    private enum TargetSorting{
-       InsertionSort, 
-       QuickSort, 
-       SelectionSort
+    private JFrame frame;
+    private enum FrameType{
+        Main, 
+        Table
     }
-    private TargetSorting targetSorting;
     
     /**
      * Controller constructor. 
@@ -53,49 +55,46 @@ public class AppController {
         viewMenager = new ViewMenager();
         keyInputLoader = new KeyInputLoader();
         argsParser = new ArgsParser();
-        
-        //no parameters given, ask for parameters
-        if(args == null || args.length == 0){
-            askForInputParameters();
+        tablePanel = new TablePanel(this);
+        parseArguments(args);
+    }
+    
+    public void parseArguments(String[] args){
+    //no parameters given, or too little parameters, ask for parameters
+        if(args == null || args.length < 3){
+            MessageBox.show("Input array too short", "Error");
+            createGUIFrame(FrameType.Table);
             return;
         }
         //Wrong sorting type given, ask for sorting type
         if(determineSortingType(args[0]) == false){
-            askForSortingType();
-        }
-        //Integer array too short, ask for integer array
-        if(args.length < 3){
-            askForInputArray();
+            MessageBox.show("Invalid sorting type", "Error");
+            createGUIFrame(FrameType.Table);
             return;
         }
+
         //try parsing integer array        
         try{
             inputArray = argsParser.parseArgsIntoArray(Arrays.copyOfRange(args, 1, args.length));
         }
         //Inform user about wrong data, and ask for integer array if neccesary
         catch(NumberFormatException ex){
-            viewMenager.printText("Values different than integers in input array"
-                    + "\nPlease insert new array");
-            askForInputArray();
+            MessageBox.show("Not all array elements are integers", "Error");
+            createGUIFrame(FrameType.Table);
+            return;
         }
         catch(IllegalArgumentException ex){
-            viewMenager.printText("Values in input array must be greater or equal 0. "
-                    + "\nPlease insert new array");
+            MessageBox.show("Array values out of range (0 - 500)", "Error");
+            createGUIFrame(FrameType.Table);
+            return;
         }
-        tablePanel = new TablePanel(this);
-                javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowTableGUI();
-            }
-        });
-        //invoke GUI
-        mainPanel = new MainPanel(inputArray.size(), inputArray.stream().mapToInt(v->v).max().orElseThrow(NoSuchElementException::new));
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowMainGUI();
-            }
-        });
-        performSorting();
+        if(frame != null){
+            frame.setVisible(false);
+            frame.dispose();
+        }
+        mainPanel = new MainPanel(inputArray.size(), 
+                inputArray.stream().mapToInt(v->v).max().orElseThrow(NoSuchElementException::new));
+        createGUIFrame(FrameType.Main);
     }
     /**
      * Method prepares sorting steps of given sorting type, and prints them to terminal
@@ -104,25 +103,47 @@ public class AppController {
     public void performSorting(){
         //prepare sorting steps
         SortingStepsLibrary steps = sorter.sortArray(inputArray);
-       // viewMenager.entitleArray();
         //print sorting steps
-        //in future steps should be displayed in GUI
         for (int i = 0; i < steps.getAmountOfSteps(); i++) {
             //viewMenager.printArray(steps.getStep(i));
             mainPanel.setArray(steps.getStep(i));
             try{
-                Thread.sleep(400);
+                Thread.sleep(200);
             }
             catch (InterruptedException e){}
         }    
     }
     
-    private void createAndShowMainGUI() {        
-        //ustawienie ladnego wygladu okien
-        JFrame.setDefaultLookAndFeelDecorated(true);
-
+    private void createGUIFrame(FrameType type){
+        new Thread() {
+            @Override
+            public void run() {
+                if(type == FrameType.Table){
+                    createAndShowTableGUI();
+                }
+                else {
+                    createAndShowMainGUI();
+                }
+            }
+        }.start();
+        //Invoke later method caued bugs, thread used instead
+        /*
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                if(type == FrameType.Table){
+                    createAndShowTableGUI();
+                }
+                else {
+                    createAndShowMainGUI();
+                }
+            }
+        });*/
+    }
+    
+    private void createAndShowMainGUI() { 
 	//utworzenie i przygotowanie okna
-        JFrame frame = new JFrame("SortingAlgorithmsVisualiser");
+        frame = new JFrame("SortingAlgorithmsVisualiser");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //panel widoczny
@@ -132,15 +153,14 @@ public class AppController {
         //wyswietlenie okna
         frame.pack();
         frame.setVisible(true);
+        //mathod has to be put isnide thread to work properly, otherwise sorted array is displayed
+        performSorting();
     }
     
     private void createAndShowTableGUI() {        
-        //ustawienie ladnego wygladu okien
-        JFrame.setDefaultLookAndFeelDecorated(true);
-
 	//utworzenie i przygotowanie okna
-        JFrame frame = new JFrame("SortingAlgorithmsVisualiser");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame("SortingAlgorithmsVisualiser");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //panel widoczny
         tablePanel.setOpaque(true); 
@@ -161,18 +181,14 @@ public class AppController {
         //Function structure makes it easy to implement new sorting types
         switch(command){
             case "-is":
-                //This sorter is implemented
-                targetSorting = TargetSorting.InsertionSort;
                 sorter = new InsertionSorter();
                 result = true;
                 break;
             case "-qs":
-                targetSorting = TargetSorting.QuickSort;
                 sorter = new QuickSorter();
                 result = true;
                 break;
             case "-ss":
-                targetSorting = TargetSorting.SelectionSort;
                 sorter = new SelectionSorter();
                 result = true;
                 break;

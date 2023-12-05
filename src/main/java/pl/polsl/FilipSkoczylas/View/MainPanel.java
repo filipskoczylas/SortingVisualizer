@@ -4,21 +4,18 @@
  */
 package pl.polsl.FilipSkoczylas.View;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- *
- * @author Filip
+ * Application main graphical window. Paints visual representation of sorting steps. 
+ * @author Filip Skoczylas
+ * @version f1
+ * @since p1
  */
 public class MainPanel extends JPanel{
     private final int LEFT_RIGHT_OFFSET = 10;

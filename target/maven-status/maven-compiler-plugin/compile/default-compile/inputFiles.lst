@@ -1,12 +1,13 @@
+D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\MessageBox.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Controller\AppController.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\KeyInputLoader.java
-D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\SortingAlgorithmsVisualizer.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\ViewMenager.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\InsertionSorter.java
-D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Controller\ArgsParser.java
-D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\SelectionSorter.java
-D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\QuickSorter.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\MainPanel.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\View\TablePanel.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\Sorter.java
 D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\SortingStepsLibrary.java
+D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\SortingAlgorithmsVisualizer.java
+D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Controller\ArgsParser.java
+D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\SelectionSorter.java
+D:\Studia\Java\SortingVisualizer\src\main\java\pl\polsl\FilipSkoczylas\Model\QuickSorter.java

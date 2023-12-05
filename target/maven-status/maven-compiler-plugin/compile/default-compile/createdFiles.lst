@@ -3,12 +3,12 @@ pl\polsl\FilipSkoczylas\Model\Sorter.class
 pl\polsl\FilipSkoczylas\View\KeyInputLoader.class
 pl\polsl\FilipSkoczylas\Controller\ArgsParser.class
 pl\polsl\FilipSkoczylas\View\ViewMenager.class
-pl\polsl\FilipSkoczylas\Controller\AppController$TargetSorting.class
+pl\polsl\FilipSkoczylas\View\MessageBox.class
 pl\polsl\FilipSkoczylas\Model\SortingStepsLibrary.class
-pl\polsl\FilipSkoczylas\Controller\AppController$2.class
 pl\polsl\FilipSkoczylas\View\MainPanel.class
 pl\polsl\FilipSkoczylas\Model\SelectionSorter.class
 pl\polsl\FilipSkoczylas\Controller\AppController.class
+pl\polsl\FilipSkoczylas\Controller\AppController$FrameType.class
 pl\polsl\FilipSkoczylas\SortingAlgorithmsVisualizer.class
 pl\polsl\FilipSkoczylas\View\TablePanel.class
 pl\polsl\FilipSkoczylas\Controller\AppController$1.class

@@ -30,8 +30,8 @@ public class ArgsParser {
         for (String arg : args) {
             try {
                 int value = Integer.parseInt(arg);
-                //Values have to be greater than 0
-                if(value < 0){
+                //Values have to be greater than 0 and smaller than 500 (gui requirement)
+                if(value < 0 || value > 500){
                     throw new IllegalArgumentException();
                 }
                 //New Integer is used, because array printing is performed by stream
