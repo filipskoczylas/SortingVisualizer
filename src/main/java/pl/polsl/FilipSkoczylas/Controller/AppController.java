@@ -4,21 +4,15 @@
  */
 package pl.polsl.FilipSkoczylas.Controller;
 
-
-import java.awt.event.WindowEvent;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import pl.polsl.FilipSkoczylas.Model.InsertionSorter;
 import pl.polsl.FilipSkoczylas.Model.QuickSorter;
 import pl.polsl.FilipSkoczylas.Model.SelectionSorter;
 import pl.polsl.FilipSkoczylas.Model.Sorter;
 import pl.polsl.FilipSkoczylas.Model.SortingStepsLibrary;
-import pl.polsl.FilipSkoczylas.View.ViewMenager;
-import pl.polsl.FilipSkoczylas.View.KeyInputLoader;
 import pl.polsl.FilipSkoczylas.View.MainPanel;
 import pl.polsl.FilipSkoczylas.View.MessageBox;
 import pl.polsl.FilipSkoczylas.View.TablePanel;
@@ -31,8 +25,6 @@ import pl.polsl.FilipSkoczylas.View.TablePanel;
  */
 public class AppController {
     private ArrayList<Integer> inputArray;
-    private ViewMenager viewMenager;
-    private KeyInputLoader keyInputLoader;
     private Sorter sorter;
     private ArgsParser argsParser;
     private MainPanel mainPanel;
@@ -52,13 +44,15 @@ public class AppController {
      */
     public AppController(String[] args){
         //Initialize view objects
-        viewMenager = new ViewMenager();
-        keyInputLoader = new KeyInputLoader();
         argsParser = new ArgsParser();
         tablePanel = new TablePanel(this);
         parseArguments(args);
     }
-    
+    /**
+     * Method parses input parameters into application options, 
+     * and if they are wrong asks for new input parameters
+     * @param args Controller initialization args
+     */
     public void parseArguments(String[] args){
     //no parameters given, or too little parameters, ask for parameters
         if(args == null || args.length < 3){
@@ -113,7 +107,10 @@ public class AppController {
             catch (InterruptedException e){}
         }    
     }
-    
+    /**
+     * Method creates new JFrame in another thread
+     * @param type type of created JFrame 
+     */
     private void createGUIFrame(FrameType type){
         new Thread() {
             @Override
@@ -140,7 +137,9 @@ public class AppController {
             }
         });*/
     }
-    
+    /**
+     * Method creates and shows JFrame containing array sorting presentation
+     */
     private void createAndShowMainGUI() { 
 	//utworzenie i przygotowanie okna
         frame = new JFrame("SortingAlgorithmsVisualiser");
@@ -157,6 +156,9 @@ public class AppController {
         performSorting();
     }
     
+    /**
+     * Mehtod creates and shows JFrame containing GUI used to determine sorting type and array values
+     */
     private void createAndShowTableGUI() {        
 	//utworzenie i przygotowanie okna
         frame = new JFrame("SortingAlgorithmsVisualiser");
@@ -196,67 +198,5 @@ public class AppController {
                 result = false;
         }
         return result;
-    }
-
-    /**
-     * Method asks user for input parameters, that should be put as command line arguments. 
-     */
-    private void askForInputParameters(){
-        viewMenager.printText("No input arguments. ");
-        askForSortingType();
-        askForInputArray();
-    }
-    /**
-     * Method asks user for sorting type. 
-     */
-    private void askForSortingType(){
-        do{
-            viewMenager.printText("Please type sorting type (-is, -qs, -ss)");
-        }while (determineSortingType(keyInputLoader.getSortingType()) == false);        
-    }
-    /**
-     * Method asks user for input integer array, that will be sorted. 
-     */
-    private void askForInputArray(){
-        viewMenager.printText("Please type numbers, which you want to include in array. "
-                + "\nNumbers have to be 0 or larger. "
-                + "\nType \"end\" to end inputing array");
-        inputArray = new ArrayList<Integer>();
-        askForArrayElements(inputArray);
-        
-    }
-    /**
-     * Method asks user for input integer array and puts user input into input integer array. 
-     * @param inputArrayList array list, in which integers will be put
-     */
-    private void askForArrayElements(ArrayList<Integer> inputArrayList){
-        while(true){
-            String input = keyInputLoader.getArrayElement();
-            if (input.equals("end")){
-                if (inputArrayList.size() < 2){
-                    viewMenager.printText("Array have to consist of at least 2 elements");
-                }
-                else{
-                    break;
-                }  
-            }
-            else{
-                int integerInput = -1;
-                //Try parsing input
-                try{
-                integerInput = argsParser.parseStringToInt(input);
-                }
-                catch(NumberFormatException ex){
-                    viewMenager.printText("Error! Value must be an integer greater or equal 0");
-                }
-                catch(IllegalArgumentException ex){
-                    viewMenager.printText("Error! Value must be greater or equal 0");
-                }
-                
-                if(integerInput >= 0){
-                    inputArrayList.add(integerInput);
-                }
-            }
-        }
     }
 }

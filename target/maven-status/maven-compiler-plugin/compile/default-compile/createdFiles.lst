@@ -1,8 +1,6 @@
 pl\polsl\FilipSkoczylas\Model\InsertionSorter.class
 pl\polsl\FilipSkoczylas\Model\Sorter.class
-pl\polsl\FilipSkoczylas\View\KeyInputLoader.class
 pl\polsl\FilipSkoczylas\Controller\ArgsParser.class
-pl\polsl\FilipSkoczylas\View\ViewMenager.class
 pl\polsl\FilipSkoczylas\View\MessageBox.class
 pl\polsl\FilipSkoczylas\Model\SortingStepsLibrary.class
 pl\polsl\FilipSkoczylas\View\MainPanel.class
